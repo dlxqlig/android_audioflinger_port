@@ -1,0 +1,4 @@
+EFFECTS_SRCS := \
+    EffectsFactory.c
+
+EFFECTS_FACTORY_OBJS = $(patsubst %.c,libs/media/libeffects/factory/%.o, $(EFFECTS_FACTORY_SRCS))

@@ -1,0 +1,1 @@
+cmd_/component_my/android-binder-ipc-master/module/binder_new.o := ld -m elf_i386   -r -o /component_my/android-binder-ipc-master/module/binder_new.o /component_my/android-binder-ipc-master/module/new/msg_queue.o /component_my/android-binder-ipc-master/module/new/binder.o 

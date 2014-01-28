@@ -1,0 +1,78 @@
+#/bin/sh
+
+#alsa copy
+if [ ! -d /exports ]; then
+    mkdir "/exports"
+fi
+if [ ! -d /exports/sdk ]; then
+    mkdir "/exports/sdk"
+fi
+mount -t nfs 10.239.119.209:/home/lig/nfs/dev_r30/sdk /exports/sdk -o nolock
+
+if [ ! -d /usr/share/alsa/pcm ]; then
+    mkdir "/usr/share/alsa/pcm/"
+fi
+cp -f /exports/sdk/build_dest/usr/share/alsa/pcm/* /usr/share/alsa/pcm/
+cp -rf /exports/sdk/build_dest/usr/share/alsa/alsa.conf  /usr/share/alsa/
+cp -rf /exports/sdk/build_dest/usr/share/alsa/sndo-mixer.alisp  /usr/share/alsa/
+cp -rf /exports/sdk/build_dest/usr/share/alsa/smixer.conf /usr/share/alsa/
+cp -rf /exports/sdk/build_dest/usr/lib/libasound* /usr/lib/
+
+if [ ! -d /usr/lib/alsa-lib ]; then
+    mkdir "/usr/lib/alsa-lib"
+fi
+if [ ! -d /usr/lib/alsa-lib/smixer ]; then
+    mkdir "/usr/lib/alsa-lib/smixer"
+fi
+cp -rf /exports/sdk/build_dest/usr/lib/alsa-lib/smixer/* /usr/lib/alsa-lib/smixer
+cp -rf /exports/sdk/build_dest/lib/modules/sound/* /lib/modules/sound
+cp -rf /exports/sdk/build_dest/lib/modules/soundcore.ko /lib/modules/
+cp -rf /exports/sdk/build_dest/lib/modules/alsa_shim.ko /lib/modules/
+
+#bellagio copy
+if [ ! -d /exports/usr ]; then
+    mkdir "/exports/usr"
+fi
+mount -t nfs 10.239.119.209:/home/lig/nfs/dev_r30/usr /exports/usr -o nolock
+if [ ! -d /usr/local/lib/bellagio ]; then
+    mkdir "/usr/local/lib/bellagio"
+fi
+if [ ! -d /usr/local/lib/omxloaders ]; then
+    mkdir "/usr/local/lib/omxloaders"
+fi
+cp -rf /exports/usr/local/bin/omxregister-bellagio /usr/local/bin
+-rf /exports/usr/local/lib/bellagio/* /usr/local/lib/bellagio/
+cp -rf /exports/usr/local/lib/omxloaders/*  /usr/local/lib/omxloaders/
+cp -rf /exports/usr/local/lib/libomxil-bellagio* /usr/local/lib/
+
+/usr/local/bin/omxregister-bellagio  -v
+
+
+#ffmpeg copy
+cp /exports/usr/local/lib/libavcodec* /usr/local/lib
+cp /exports/usr/local/lib/libavfilter* /usr/local/lib
+cp /exports/usr/local/lib/libavdevice* /usr/local/lib
+cp /exports/usr/local/lib/libavformat* /usr/local/lib
+cp /exports/usr/local/lib/libavutil* /usr/local/lib
+cp /exports/usr/local/lib/libswscale* /usr/local/lib
+cp /exports/usr/local/lib/libswresample* /usr/local/lib
+cp /exports/usr/local/lib/pkgconfig/* /usr/local/lib/pkgconfig
+
+#libsamplereate
+cp /exports/usr/local/lib/libsamplerate* /usr/local/lib
+#libomxffmpegdist
+cp /exports/usr/local/lib/extern_omxcomp/lib/libomxffmpegdist* /usr/local/lib/bellagio/
+
+#libomxalsa
+cp /exports/usr/local/lib/extern_omxcomp/lib/libomxalsa* /usr/local/lib/bellagio
+#Example
+cp /exports/usr/local/bin/omx* /usr/local/bin/
+
+
+cp  libsamplerate-0.1.8/libsamplerate.* /usr/local/lib
+
+
+
+cp /component_my/audio-render/libaudRender.so /sdk/build_dest/usr/lib
+cp /component_my/audio-render/src/include /sdk/build_dest/usr/include
+

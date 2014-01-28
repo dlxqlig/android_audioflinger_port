@@ -1,0 +1,11 @@
+SRCS := \
+	atomic.c \
+	native_handle.c \
+	process_name.c \
+	threads.c \
+    config_utils.c \
+    ashmem-host.c \
+    load_file.c \
+    misc.c
+
+OBJS = $(patsubst %.c,libs/cutils/%.o, $(CUTILS_SRCS))

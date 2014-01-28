@@ -1,0 +1,28 @@
+MEDIA_SRCS := \
+    AudioTrack.cpp \
+    AudioTrackShared.cpp \
+    IAudioFlinger.cpp \
+    IAudioFlingerClient.cpp \
+    IAudioTrack.cpp \
+    IAudioRecord.cpp \
+    AudioRecord.cpp \
+    AudioParameter.cpp \
+    AudioSystem.cpp \
+    IMediaPlayerService.cpp \
+    IMediaPlayerClient.cpp \
+    IMediaRecorderClient.cpp \
+    IMediaPlayer.cpp \
+    IStreamSource.cpp \
+    Metadata.cpp \
+    ToneGenerator.cpp \
+    IOMX.cpp \
+    IAudioPolicyService.cpp \
+    autodetect.cpp \
+    IMediaDeathNotifier.cpp \
+    IEffect.cpp \
+    IEffectClient.cpp \
+    AudioEffect.cpp \
+    Visualizer.cpp \
+    MemoryLeakTrackUtil.cpp \
+
+MEDIA_OBJS = $(patsubst %.cpp,libs/media/libmedia/%.o, $(MEDIA_SRCS))
