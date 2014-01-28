@@ -1,0 +1,21 @@
+The following procedure to run android audioflinger on linux platform.
+1.start alsa
+2.add binder kernel module
+    2.1 insmod binder_driver.ko
+3.copy all so lib
+    cp -rf /component/android-audio-flinger/*.so /usr/lib
+    cp -rf /component/android-audio-flinger/libaudOmxDec.so /usr/local/lib/bellagio
+
+4. run binderservicemanager
+5. run audioflingerserver
+6. if you want to decode ac3 audio, install bellagio 
+   you alsa can check whether you register ac3 decoder use omxregister-bellagio  -v check
+7. test
+  7.1 player_test  *pcm (soundpool mode)
+  7.2 audio_player_decoder ac3 file
+  7.3 audio_player_pcm pcm file
+
+thanks to the following project:
+  omxplayer
+  android
+  bellagio
